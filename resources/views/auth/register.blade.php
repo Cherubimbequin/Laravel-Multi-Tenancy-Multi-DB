@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register.store') }}">
         @csrf
 
         <!-- Name -->
@@ -14,6 +14,15 @@
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
+
+        <div class="mt-2">
+            <x-input-label for="subdomain" :value="__('Subdomain')" />
+
+            <div class="flex items-baseline">
+                <x-text-input id="subdomain" class="block mt-1 mr-2 w-full" type="text" name="subdomain" :value="old('subdomain')" required />
+                .{{ config('tenancy.central_domains')[0] }}
+            </div>
         </div>
 
         <!-- Password -->
